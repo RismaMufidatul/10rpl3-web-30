@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Biodata</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dbeafe;
+            padding: 30px;
+        }
+
+        .container {
+            width: 500px;
+            margin: auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1565c0;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #90caf9;
+            border-radius: 5px;
+        }
+
+        textarea {
+            height: 70px;
+        }
+
+        .jenis-kelamin {
+            margin-top: 8px;
+        }
+
+        .jenis-kelamin input {
+            width: auto;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #1565c0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d47a1;
+        }
+
+        #hasil {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e3f2fd;
+            border: 2px solid #1565c0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>FORM BIODATA SISWA</h2>
+
+        <form onsubmit="tampilkanBiodata(event)">
+
+            <label>Nama</label>
+            <input type="text" id="nama" required>
+
+            <label>Alamat</label>
+            <textarea id="alamat" required></textarea>
+
+            <label>Jurusan</label>
+            <select id="jurusan" required>
+                <option value="">-- Pilih Jurusan --</option>
+                <option value="RPL">RPL</option>
+                <option value="TKJ">TKJ</option>
+                <option value="TBSM">TBSM</option>
+                <option value="TKR">TKR</option>
+                <option value="TEI">TEI</option>
+            </select>
+
+            <label>Jenis Kelamin</label>
+
+            <div class="jenis-kelamin">
+                <input type="radio" name="jk" value="Laki-laki" required>
+                Laki-laki
+
+                <input type="radio" name="jk" value="Perempuan">
+                Perempuan
+            </div>
+
+            <label>Tinggi Badan (cm)</label>
+            <input type="number" id="tinggi" required>
+
+            <label>Berat Badan (kg)</label>
+            <input type="number" id="berat" required>
+
+            <label>Hobi</label>
+            <input type="text" id="hobi" required>
+
+            <label>Nomor HP</label>
+            <input type="tel" id="hp" required>
+
+            <button type="submit">SUBMIT</button>
+
+        </form>
+
+        <!-- HASIL BIODATA -->
+        <div id="hasil" style="display: none;">
+
+            <h2>HASIL BIODATA</h2>
+
+            <p><b>Nama:</b> <span id="hasilNama"></span></p>
+
+            <p><b>Alamat:</b> <span id="hasilAlamat"></span></p>
+
+            <p><b>Jurusan:</b> <span id="hasilJurusan"></span></p>
+
+            <p><b>Jenis Kelamin:</b> <span id="hasilJK"></span></p>
+
+            <p><b>Tinggi Badan:</b> <span id="hasilTinggi"></span> cm</p>
+
+            <p><b>Berat Badan:</b> <span id="hasilBerat"></span> kg</p>
+
+            <p><b>Hobi:</b> <span id="hasilHobi"></span></p>
+
+            <p><b>Nomor HP:</b> <span id="hasilHP"></span></p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function tampilkanBiodata(event) {
+
+            event.preventDefault();
+
+            // Mengambil data dari form
+            let nama = document.getElementById("nama").value;
+            let alamat = document.getElementById("alamat").value;
+            let jurusan = document.getElementById("jurusan").value;
+            let tinggi = document.getElementById("tinggi").value;
+            let berat = document.getElementById("berat").value;
+            let hobi = document.getElementById("hobi").value;
+            let hp = document.getElementById("hp").value;
+
+            // Mengambil jenis kelamin
+            let jk = document.querySelector(
+                'input[name="jk"]:checked'
+            ).value;
+
+            // Menampilkan hasil
+            document.getElementById("hasilNama").textContent = nama;
+            document.getElementById("hasilAlamat").textContent = alamat;
+            document.getElementById("hasilJurusan").textContent = jurusan;
+            document.getElementById("hasilJK").textContent = jk;
+            document.getElementById("hasilTinggi").textContent = tinggi;
+            document.getElementById("hasilBerat").textContent = berat;
+            document.getElementById("hasilHobi").textContent = hobi;
+            document.getElementById("hasilHP").textContent = hp;
+
+            // Memunculkan hasil
+            document.getElementById("hasil").style.display = "block";
+        }
+
+    </script>
+
+</body>
+
+</html>
